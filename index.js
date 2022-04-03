@@ -8,9 +8,20 @@ function newImage(url, left, bottom){
     return object
 }
 
+function moveItemToInventory(itemUrl){
+    let inventoryItem = document.createElement('img')
+    inventoryItem.src = itemUrl
+    inventory.append(inventoryItem)
+}
+
 function newItem(url, left, bottom){
     let item = newImage(url, left, bottom)
+    item.addEventListener('click', function(){
+        item.remove()
+        moveItemToInventory(url)
+    })
 }
+
 
 function newInventory(){
     let inventory = document.createElement('div')
@@ -26,9 +37,10 @@ function newInventory(){
     inventory.style.border = '2px solid black'
     inventory.style.backgroundColor = 'brown'
     document.body.append(inventory)
+    return inventory
 }
 
-newInventory()
+let inventory = newInventory()
 newImage('assets/green-character.gif', 100, 250)
 newImage('assets/tree.png', 200, 450)
 newImage('assets/pillar.png', 350, 250)
